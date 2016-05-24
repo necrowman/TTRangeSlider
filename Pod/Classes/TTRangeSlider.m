@@ -234,14 +234,13 @@ static const CGFloat kLabelsFontSize = 12.0f;
 
 - (void)updateLabelPositions {
     //the centre points for the labels are X = the same x position as the relevant handle. Y = the y position of the handle minus half the height of the text label, minus some padding.
-    int padding = 8;
     float minSpacingBetweenLabels = 8.0f;
 
     CGPoint leftHandleCentre = [self getCentreOfRect:self.leftHandle.frame];
-    CGPoint newMinLabelCenter = CGPointMake(leftHandleCentre.x, (self.leftHandle.frame.origin.y + self.leftHandle.frame.size.height) / 2.f + (self.minLabel.frame.size.height/2)); //- padding);
+    CGPoint newMinLabelCenter = leftHandleCentre;
 
     CGPoint rightHandleCentre = [self getCentreOfRect:self.rightHandle.frame];
-    CGPoint newMaxLabelCenter = CGPointMake(rightHandleCentre.x, (self.rightHandle.frame.origin.y + self.rightHandle.frame.size.height) / 2.f + (self.maxLabel.frame.size.height/2)); //- padding);
+    CGPoint newMaxLabelCenter = rightHandleCentre;
 
     CGSize minLabelTextSize = self.minLabelTextSize;
     CGSize maxLabelTextSize = self.maxLabelTextSize;
@@ -405,30 +404,31 @@ static const CGFloat kLabelsFontSize = 12.0f;
 
 #pragma mark - Animation
 - (void)animateHandle:(CALayer*)handle withSelection:(BOOL)selected {
-    if (selected){
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:0.3];
-        [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut] ];
-        handle.transform = CATransform3DMakeScale(self.selectedHandleDiameterMultiplier, self.selectedHandleDiameterMultiplier, 1);
-
-        //the label above the handle will need to move too if the handle changes size
-        [self updateLabelPositions];
-
-        [CATransaction setCompletionBlock:^{
-        }];
-        [CATransaction commit];
-
-    } else {
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:0.3];
-        [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut] ];
-        handle.transform = CATransform3DIdentity;
-
-        //the label above the handle will need to move too if the handle changes size
-        [self updateLabelPositions];
-
-        [CATransaction commit];
-    }
+    [self updateLabelPositions];
+//    if (selected){
+////        [CATransaction begin];
+////        [CATransaction setAnimationDuration:0.3];
+////        [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut] ];
+////        handle.transform = CATransform3DMakeScale(self.selectedHandleDiameterMultiplier, self.selectedHandleDiameterMultiplier, 1);
+//
+//        //the label above the handle will need to move too if the handle changes size
+//        [self updateLabelPositions];
+//
+////        [CATransaction setCompletionBlock:^{
+////        }];
+////        [CATransaction commit];
+//
+//    } else {
+//        [CATransaction begin];
+//        [CATransaction setAnimationDuration:0.3];
+//        [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut] ];
+//        handle.transform = CATransform3DIdentity;
+//
+//        //the label above the handle will need to move too if the handle changes size
+//        [self updateLabelPositions];
+//
+//        [CATransaction commit];
+//    }
 }
 
 #pragma mark - Calculating nearest handle to point

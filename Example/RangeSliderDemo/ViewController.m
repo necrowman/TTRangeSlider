@@ -42,17 +42,26 @@
     
     //custom number formatter range slider
     self.rangeSliderCustom.delegate = self;
-    self.rangeSliderCustom.minValue = 0;
-    self.rangeSliderCustom.maxValue = 100;
+    self.rangeSliderCustom.minValue = 20;
+    self.rangeSliderCustom.maxValue = 60;
     self.rangeSliderCustom.selectedMinimum = 40;
-    self.rangeSliderCustom.selectedMaximum = 60;
-    self.rangeSliderCustom.handleImage = [UIImage imageNamed:@"custom-handle"];
+    self.rangeSliderCustom.selectedMaximum = 50;
+    self.rangeSliderCustom.handleColor = [UIColor colorWithWhite:1 alpha:1];
     self.rangeSliderCustom.selectedHandleDiameterMultiplier = 1;
+    self.rangeSliderCustom.handleDiameter = 30;
+    self.rangeSliderCustom.tintColor = [UIColor colorWithWhite:204.f / 255.f alpha:1];
     self.rangeSliderCustom.tintColorBetweenHandles = [UIColor redColor];
-    self.rangeSliderCustom.lineHeight = 10;
-    NSNumberFormatter *customFormatter = [[NSNumberFormatter alloc] init];
-    customFormatter.positiveSuffix = @"B";
-    self.rangeSliderCustom.numberFormatterOverride = customFormatter;
+    self.rangeSliderCustom.lineHeight = 2;
+    
+    for (CALayer * layer in @[self.rangeSliderCustom.leftHandle,
+                              self.rangeSliderCustom.rightHandle]) {
+        layer.borderWidth = 1;
+        layer.borderColor = [UIColor colorWithWhite:0 alpha:0.1].CGColor;
+        layer.shadowOffset = (CGSize){0, 3};
+        layer.shadowRadius = 3;
+        layer.shadowColor = [UIColor blackColor].CGColor;
+        layer.shadowOpacity = 0.25;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
