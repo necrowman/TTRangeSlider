@@ -238,10 +238,10 @@ static const CGFloat kLabelsFontSize = 12.0f;
     float minSpacingBetweenLabels = 8.0f;
 
     CGPoint leftHandleCentre = [self getCentreOfRect:self.leftHandle.frame];
-    CGPoint newMinLabelCenter = CGPointMake(leftHandleCentre.x, (self.leftHandle.frame.origin.y + self.leftHandle.frame.size.height) / 2.f + (self.minLabel.frame.size.height/2) + 2); //- padding);
+    CGPoint newMinLabelCenter = CGPointMake(leftHandleCentre.x, (self.leftHandle.frame.origin.y + self.leftHandle.frame.size.height) / 2.f + (self.minLabel.frame.size.height/2)); //- padding);
 
     CGPoint rightHandleCentre = [self getCentreOfRect:self.rightHandle.frame];
-    CGPoint newMaxLabelCenter = CGPointMake(rightHandleCentre.x, (self.rightHandle.frame.origin.y + self.rightHandle.frame.size.height) / 2.f + (self.maxLabel.frame.size.height/2) + 2); //- padding);
+    CGPoint newMaxLabelCenter = CGPointMake(rightHandleCentre.x, (self.rightHandle.frame.origin.y + self.rightHandle.frame.size.height) / 2.f + (self.maxLabel.frame.size.height/2)); //- padding);
 
     CGSize minLabelTextSize = self.minLabelTextSize;
     CGSize maxLabelTextSize = self.maxLabelTextSize;
