@@ -116,4 +116,14 @@ IB_DESIGNABLE
  */
 @property (nonatomic, assign) CGFloat lineHeight;
 
+/**
+ *min slider layer
+ */
+@property (nonatomic, strong) CALayer *leftHandle;
+
+/**
+ *max slider layer
+ */
+@property (nonatomic, strong) CALayer *rightHandle;
+
 @end
